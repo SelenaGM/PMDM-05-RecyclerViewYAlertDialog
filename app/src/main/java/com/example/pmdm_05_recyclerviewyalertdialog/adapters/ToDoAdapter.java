@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -80,6 +81,31 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoVH> {
 
             }
         });
+        holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDelete("SEGURO QUE QUIERES ELIMINAR?", holder.getAdapterPosition()).show();
+
+            }
+        });
+    }
+
+    private AlertDialog confirmDelete(String titulo, int posicion) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(titulo);
+        builder.setCancelable(false);
+
+        //si le d as a no, no cambiará, si le  das a sí, cumplirá la función
+        builder.setNegativeButton("NO",null);
+        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                objects.remove(posicion);
+                notifyItemRemoved(posicion);
+            }
+        });
+
+        return builder.create();
     }
 
     @Override
@@ -112,6 +138,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoVH> {
 
         TextView lblTitulo, lblContenido, lblFecha;
         ImageButton btnCompletado;
+        ImageButton btnEliminar;
 
         public ToDoVH(@NonNull View itemView) {
             super(itemView);
@@ -119,6 +146,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoVH> {
             lblContenido= itemView.findViewById(R.id.lblContenidoTodoViewModel);
             lblFecha = itemView.findViewById(R.id.lblFechaTodoViewModel);
             btnCompletado = itemView.findViewById(R.id.btnCompletadoTodoViewModel);
+            btnEliminar = itemView.findViewById(R.id.btnEliminarTodoViewModel);
         }
     }
 }

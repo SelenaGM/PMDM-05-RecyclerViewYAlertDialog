@@ -49,14 +49,28 @@
 
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnCompletadoTodoViewModel"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="#00FFFFFF"
-            app:srcCompat="@android:drawable/checkbox_off_background" />
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnCompletadoTodoViewModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#00FFFFFF"
+                app:srcCompat="@android:drawable/checkbox_off_background" />
+
+            <ImageButton
+                android:id="@+id/btnEliminarTodoViewModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
